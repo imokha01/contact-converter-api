@@ -2,3 +2,4 @@
 **/.vscode/*
 **/.history
 .env
+package-lock.json
