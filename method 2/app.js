@@ -37,7 +37,7 @@ class Person {
 }
 
 // Validate email format
-const isValidEmail = (email) => /\S+@\S+\.\S+/.test(email);
+const isValidEmail = (email) => /\\S+@\\S+\\.\\S+/.test(email);
 
 // Validate phone number (simple 10-digit validation)
 const isValidPhoneNumber = (number) => /^\d{10}$/.test(number);
