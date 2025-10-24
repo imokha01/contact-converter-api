@@ -13,26 +13,27 @@ const readLineAsync = (message) =>
   new Promise((resolve) => readline.question(message, resolve));
 
 // Validate email format
-const isValidEmail = (email) => /\\S+@\\S+\\.\\S+/.test(email);
+const isValidEmail = (email) => /\S+@\S+\.\S+/.test(email);
 
 // Validate phone number (simple 10-digit validation)
 const isValidPhoneNumber = (number) => /^\d{10}$/.test(number);
 
 // Person class to handle contact information and save to CSV
 class Person {
-  constructor(name = '', number = '', email = '') {
+  constructor(name = '', number = '', email = '', date = '') {
     this.name = name;
     this.number = number;
     this.email = email;
+    this.date = new Date().toISOString()
   }
 
   // Save contact to CSV
   saveToCSV() {
-    const content = `${this.name}, ${this.number}, ${this.email}\n`;
+    const content = `${this.name}, ${this.number}, ${this.email}, ${this.date}\n`;
     try {
       // Check if the CSV file exists, create it if not
       if (!existsSync('./contacts.csv')) {
-        writeFileSync('./contacts.csv', 'Name, Phone, Email\n');
+        writeFileSync('./contacts.csv', 'Name, Phone, Email, CREATED_AT\n');
       }
       appendFileSync('./contacts.csv', content);
       console.log(`${this.name} saved!`.green);
@@ -44,7 +45,7 @@ class Person {
 
 // Check if CSV file exists, create with headers if not
 if (!existsSync('contacts.csv')) {
-  writeFileSync('contacts.csv', 'Name, Phone, Email\n');
+  writeFileSync('contacts.csv', 'Name, Phone, Email, CREATED_AT\n');
 }
 
 // Start the application
