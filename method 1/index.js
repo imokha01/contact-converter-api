@@ -43,8 +43,8 @@ class Person {
 }
 
 // Check if CSV file exists, create with headers if not
-if (!existsSync('./contacts.csv')) {
-  writeFileSync('./contacts.csv', 'Name, Phone, Email\n');
+if (!existsSync('contacts.csv')) {
+  writeFileSync('contacts.csv', 'Name, Phone, Email\n');
 }
 
 // Start the application
